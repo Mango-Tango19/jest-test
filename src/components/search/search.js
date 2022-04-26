@@ -1,5 +1,11 @@
+import SearchBar from "../search-bar/search-bar"
+import SearchedList from "../searched-list/searched-list"
+
 const Search = () => {
-    return <h1>Im Search</h1>
+    return <div className="container">
+    <SearchBar />
+    <SearchedList />
+    </div>
 }
 
 export default Search

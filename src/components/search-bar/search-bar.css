@@ -1,0 +1,7 @@
+.react-calendar  {
+    width: 18rem !important ;
+}
+
+  .react-calendar__decade-view .react-calendar__tile {
+      padding: 0.5em 0.5em !important;
+  }
