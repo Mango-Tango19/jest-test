@@ -1,49 +1,31 @@
 import "./search-bar.css";
-
 import { useState } from "react";
 import DatePicker from "react-date-picker";
-// import { useContext } from "react";
-// import { MyContext } from "../search/search";
 
-//import { request_error, send_request } from "../../features/request-slice";
-
-
-const SearchBar = () => {
-
-
-
-
+const SearchBar = ({ setSearchQuery }) => {
   const [yearStart, setYearStart] = useState("");
+
   const [yearEnd, setYearEnd] = useState("");
-
-
 
   const [inputVal, setInputVal] = useState("");
 
   const handleInput = (e) => {
-  setInputVal(e.target.value);
-//  setCanRequest(false)
+    setInputVal(e.target.value);
   };
 
+  const serializeFilter = () => {
+    const startDate = yearStart
+      ? `&year_start=${yearStart.getFullYear()}`
+      : null;
+    const endDate = yearEnd ? `&year_end=${yearEnd.getFullYear()}` : null;
 
+    return `${inputVal}${startDate ? startDate : ""}${endDate ? endDate : ""}`;
+  };
 
-  // const serializeFilter = () => {
-
-  //    let startDateQuery = yearStart ? `&year_start=${yearStart.getFullYear()}` : ''
-  //    let endDateQuery = yearEnd ? `&year_start=${yearEnd.getFullYear()}` : ''
-
-  //    let query = `https://images-api.nasa.gov/search?q=${inputVal}${startDateQuery}${endDateQuery}&media_type=image`
-
-  //    console.log(query)
-
-  // return query
-  // }
-
-//console.log( yearEnd ? yearEnd.getFullYear() : 'no')
   const hadleSearch = (e) => {
     e.preventDefault();
-   
- 
+    const query = serializeFilter();
+    setSearchQuery(query);
   };
 
   return (
@@ -112,6 +94,6 @@ const SearchBar = () => {
       </div>
     </form>
   );
-}
+};
 
 export default SearchBar;

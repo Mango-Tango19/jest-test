@@ -1,24 +1,19 @@
 import ErrorIndicator from "../error-indicator/error-indicator"
+import LoadingIndicator from "../loading-indicator/loading-indicator"
 
-
-import { useFetchSearchQuery } from "../../features/request-slice"
-
-const SearchedList = () => {
-
-
-  const { data = [], isError, isFetching } = useFetchSearchQuery('mars')
+const SearchedList = ({isError, isFetching, data}) => {
 
 
     if (isFetching && !isError) {
-        return <h1>Loading...</h1>
+        return <LoadingIndicator />
     }
 
     if ( isError ) {
-        return <ErrorIndicator />
+        return <ErrorIndicator message={`Cant find any item by your search request, please try another one`} />
     }
 
     return <>
-     <h1>I'm the List! </h1><p>{ data.collection.items[0].data[0].keywords}</p>
+     <h1>I'm the List! </h1><p>{ data.collection.items.length}</p>
     </>
 }
 

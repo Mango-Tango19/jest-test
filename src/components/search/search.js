@@ -1,32 +1,24 @@
 import SearchBar from "../search-bar/search-bar";
 import SearchedList from "../searched-list/searched-list";
-//import { useItemsList } from "./useSearch";
-//import { createContext } from "react";
-
-//export const MyContext = createContext();
+import { useFetchSearchQuery } from "../../features/request-slice"
+import { useState } from "react";
 
 const Search = () => {
 
+  const [ searchQuery, setSearchQuery ] = useState('')
 
+  const { data = [], isError, isFetching } = useFetchSearchQuery(searchQuery)
 
-//   const ItemsContextProvider = ({ children }) => {
-//     const itemsListData = { loading, error, items };
-
-//     return <MyContext.Provider value={itemsListData} children={children} />;
-//   };
-
-//   const SearchContextProvider = ({ children }) => {
-//     const searchData = { performRequest };
-//     return <MyContext.Provider value={searchData} children={children} />;
-//   };
-
+const handleSearch = (val) => {
+  setSearchQuery(val)
+}
 
   return (
     <div className='container'>
      
-        <SearchBar />
+        <SearchBar setSearchQuery={handleSearch}/>
 
-        <SearchedList />
+        <SearchedList data={data} isError={isError} isFetching={isFetching} />
    
     </div>
   );
