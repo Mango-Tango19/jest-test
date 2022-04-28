@@ -37,13 +37,6 @@ const initialState = {
             }
           }
 
-          // case 'SEARCH_CHANGE': {
-          //   return {
-          //     ...state,
-          //   status: 'work',
-          //   term: action.payload
-          //   }
-          // }
           default:
               return state
     }
@@ -59,34 +52,23 @@ const getData = async (url) => {
 }
 
 
-  export const useItemsList = () => {
+   const useItemsList = () => {
 
     const [state, dispatch] = useReducer(reducer, initialState)
 
-  //  const changeTerm = useCallback((term = '') => dispatch({ type: 'SEARCH_CHANGE', payload: term }), [])
+   
 
-    // useEffect(() => {
-    //   changeTerm()
-    // }, [ changeTerm, state.term])
-
-
-  
-    const performRequest = useCallback((term) => {
+    const performRequest = useCallback((url) => {
         dispatch({ type: 'REQUEST_START' })
+
     
-        getData(`https://images-api.nasa.gov/search?q=${term}&media_type=image`)
+        getData(url)
           .then(data => dispatch({ type: 'REQUEST_SUCCESS', payload: data.collection.items }))
           .catch(err => {
             console.error(err)
             dispatch({ type: 'REQUEST_ERROR' })
           })
       }, [])
-
-
-      // useEffect(() => {
-      //   performRequest()
-      // }, [performRequest])
-
 
       return {
         ...state,

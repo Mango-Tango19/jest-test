@@ -1,23 +1,25 @@
 import ErrorIndicator from "../error-indicator/error-indicator"
-import { useContext } from "react"
-import { MyContext } from "../search/search"
 
 
+import { useFetchSearchQuery } from "../../features/request-slice"
 
 const SearchedList = () => {
 
-    const { loading, error, items } = useContext(MyContext)
 
-    if (loading && !error) {
+  const { data = [], isError, isFetching } = useFetchSearchQuery('mars')
+
+
+    if (isFetching && !isError) {
         return <h1>Loading...</h1>
     }
 
-    if ( error ) {
+    if ( isError ) {
         return <ErrorIndicator />
     }
 
-
-    return <h1>I'm the List! { items ? items.length  : <span>But I'm empty :(</span>}</h1>
+    return <>
+     <h1>I'm the List! </h1><p>{ data.collection.items[0].data[0].keywords}</p>
+    </>
 }
 
 export default SearchedList
