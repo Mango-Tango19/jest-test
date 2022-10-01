@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-export function Converter() {
-	const [rub, setRub] = useState(2);
-	const [usd, setUsd] = useState(1);
+import React from "react";
 
+import { useConverter } from "./useConverter";
+export function Converter() {
+	const { rub, usd, updateRub, updateUsd } = useConverter();
 	return (
 		<form>
 			<label>
@@ -13,7 +13,7 @@ export function Converter() {
 					min='0'
 					step='1'
 					value={rub}
-					onChange={(e) => setRub(e.target.value)}
+					onChange={(e) => updateRub(e.target.value)}
 				/>
 			</label>
 
@@ -25,7 +25,7 @@ export function Converter() {
 					min='0'
 					step='1'
 					value={usd}
-					onChange={(e) => setUsd(e.target.value)}
+					onChange={(e) => updateUsd(e.target.value)}
 				/>
 			</label>
 		</form>
