@@ -1,13 +1,16 @@
 import React from "react";
 import { quotes } from "./quotes";
+import { selectRandomQuote } from "./selectRandomQuote";
 
-export const Quote = () => {
-	const randomIdx = Math.floor(Math.random() * quotes.length);
-	const { text, author } = quotes[randomIdx];
+const defaultQuote = selectRandomQuote(quotes);
+
+export const Quote = ({ quote = defaultQuote }) => {
+	const { author, text } = quote;
+
 	return (
-		<>
+		<footer>
 			<blockquote>{text}</blockquote>
 			<cite>{author}</cite>
-		</>
+		</footer>
 	);
 };
