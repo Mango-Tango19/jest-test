@@ -1,8 +1,8 @@
 import React from "react";
 
-import { useConverter } from "./useConverter";
-export function Converter() {
-	const { rub, usd, updateRub, updateUsd } = useConverter(100, 42);
+import { useConverter as ConverterHook } from "./useConverter";
+export function Converter({ useConverter = ConverterHook }) {
+	const { rub, usd, updateRub, updateUsd } = ConverterHook(100, 42);
 	return (
 		<form>
 			<label>
