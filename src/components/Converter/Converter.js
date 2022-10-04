@@ -2,7 +2,7 @@ import React from "react";
 
 import { useConverter } from "./useConverter";
 export function Converter() {
-	const { rub, usd, updateRub, updateUsd } = useConverter();
+	const { rub, usd, updateRub, updateUsd } = useConverter(100, 42);
 	return (
 		<form>
 			<label>
