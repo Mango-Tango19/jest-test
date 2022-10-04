@@ -1,6 +1,5 @@
 import { renderHook, act } from "@testing-library/react-hooks";
 import { useConverter } from "./useConverter";
-import { initialProps } from "@testing-library/react";
 
 const testRub = 100;
 const course = 42;
