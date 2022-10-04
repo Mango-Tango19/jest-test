@@ -1,5 +1,6 @@
 import { renderHook, act } from "@testing-library/react-hooks";
 import { useConverter } from "./useConverter";
+import { initialProps } from "@testing-library/react";
 
 const testRub = 100;
 const course = 42;
@@ -59,5 +60,22 @@ describe("when call updateUsd method", () => {
 });
 
 describe("when re-rendered", () => {
-	it.todo("should update its values");
+	it("should update its values", () => {
+		const { result, rerender } = renderHook(
+			({ val, course }) => useConverter(val, course),
+			{
+				initialProps: {
+					val: testRub,
+					course,
+				},
+			}
+		);
+
+		rerender({ val: 10, course: 50 });
+
+		const { rub, usd } = result.current;
+
+		expect(rub).toEqual(10);
+		expect(usd).toEqual(0.2);
+	});
 });
