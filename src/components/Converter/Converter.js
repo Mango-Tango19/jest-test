@@ -1,6 +1,7 @@
 import React from "react";
 
 import { useConverter as ConverterHook } from "./useConverter";
+
 export function Converter({ useConverter = ConverterHook }) {
 	const { rub, usd, updateRub, updateUsd } = ConverterHook(100, 42);
 	return (
