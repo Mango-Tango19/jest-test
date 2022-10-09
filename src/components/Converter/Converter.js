@@ -1,9 +1,15 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import { selectCourse } from "../../store/features/course/slice";
 
 import { useConverter as ConverterHook } from "./useConverter";
 
 export function Converter({ useConverter = ConverterHook }) {
-	const { rub, usd, updateRub, updateUsd } = ConverterHook(100, 42);
+	const initialCourse = useSelector(selectCourse);
+	const { rub, usd, updateRub, updateUsd } = ConverterHook(
+		100,
+		initialCourse
+	);
 	return (
 		<form>
 			<label>
