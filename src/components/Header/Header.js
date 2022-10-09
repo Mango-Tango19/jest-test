@@ -1,4 +1,10 @@
-import { styles } from "./Header.module.css";
+import CurrentCourse from "../CurrentCourse/CurrentCourse";
+//import { style } from "./Header.module.css";
 export const Header = () => {
-	return <header className={styles.header}>Курс на текущий момент</header>;
+	return (
+		<header>
+			<CurrentCourse />
+			Курс на текущий момент
+		</header>
+	);
 };
